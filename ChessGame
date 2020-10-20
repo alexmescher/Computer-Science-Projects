@@ -1,0 +1,138 @@
+//This code created an array of pawns for each player.
+//The pawns can be moved using the arrow keys after they are clicked on in thier center using the mouse
+//To select another pawn to use just click on the center of another one. To deselect click anywhere on the board.
+//I created a peice object and to create the other peices I just need to create an array for each piece type.
+//The framework is there, just needs to be fleshed out more.
+
+
+boolean up = false;
+boolean down =false;
+boolean right = false;
+boolean left = false;
+
+Piece[] myPawns;
+Piece[] myWPawns;
+
+void setup() {
+  size (1000, 800);
+ myPawns = new Piece[8];
+ myWPawns = new Piece[8];
+ for(int i = 0; i < 8; i++) {
+  myPawns[i] = new Piece(100*i+150,150, 1, 1);
+  myWPawns[i] = new Piece(100*i+150,650,2,1);
+  }
+}
+
+void draw() {
+  background(0);
+  //rect chess board
+  for (int l=150; l<100*8; l+=200) {
+    for (int p=50; p<100*8; p+=200) {
+      fill (255);
+      rect (l, p, 100, 100);
+      rect (l+100, p+100, 100, 100);
+    }
+  }
+   
+   //side of chess board
+    noFill();
+    rect(100, 0, 100*8, 100*8);
+    
+  
+  for(int j = 0; j<8;j++) {
+  myPawns[j].display();
+  myPawns[j].select();
+  myPawns[j].move();
+  myWPawns[j].display();
+  myWPawns[j].select();
+  myWPawns[j].move();
+  }
+}
+
+void keyPressed() {
+ if(keyCode == UP){
+   up = true;
+ } else if(keyCode == DOWN){
+   down = true;
+ } else if(keyCode == RIGHT){
+   right = true;
+ } else if(keyCode == LEFT){
+   left = true;
+ }
+}
+
+
+class Piece{
+  float xpos;
+  float ypos;
+  int player;
+  int type;
+  boolean move;
+  
+  Piece(float tempXpos, float tempYpos, int tempPlayer, int tempType) {
+    xpos = tempXpos;
+    ypos = tempYpos;
+    player = tempPlayer;
+    type = tempType;
+  }
+  
+  void display() {
+    rectMode(CENTER);
+    if(player == 1){
+    fill(0,255,0);
+    } else{
+    fill(255,0,0);
+    }
+    rect(xpos, ypos, 70, 70);
+    textAlign(CENTER,CENTER);
+    
+    if(type == 1){
+      fill(255);
+      text("Pawn",xpos,ypos);
+    }
+
+   
+   
+  }
+  void select(){
+    if(mousePressed) {
+      if(mouseX>xpos-50 && mouseX<xpos+50 && mouseY> ypos-50 && mouseY< ypos+50){
+        move = true;
+      }
+      if(mouseX<xpos-50 || mouseX>xpos+50 || mouseY< ypos-50 || mouseY> ypos+50){
+        move = false;
+    }
+   
+  }
+  }
+  
+void move(){
+  if(move==true) {
+   if(up == true){
+       ypos -= 100;
+       up = false;
+     }else if(down == true){
+       ypos += 100; 
+       down = false;
+     }else if(right == true){
+       xpos += 100;
+       right = false;
+     }else if(left == true){
+       xpos -= 100; 
+       left = false;
+     }
+  }
+ }
+  
+  float getx() {
+    return xpos;
+  }
+  float gety() {
+    return ypos;
+  }
+  
+  
+void attack() {
+  
+}
+}
