@@ -1,0 +1,67 @@
+//create variable to hold new object
+[ObjectName] instanceName;
+
+void setup(){
+  //construct and innitialize object
+  instanceName = new [ObjectName](Set properties here);
+}
+
+void draw(){
+  //interact with object and use methods
+  //call variable from object
+  instanceName.var1 = 1;
+  
+  //call method from object
+  instanceName.Method_Name();
+
+}
+
+
+
+class [ObjectName]{
+  //Declare variables
+  float var 1;
+  //Build constructor
+  [ObjectName](float tempInput){
+    //set temp values to initial parameters
+  }
+
+  //This is where the methods are defined
+  void Method_Name(){
+    //Method code
+  }
+
+}
+
+
+-----------------EXAMPLE---------------------
+
+Ball ball;
+
+void setup(){
+ball = new Ball(50,50,50, color(0));
+}
+
+void draw(){
+ball.display();
+}
+
+class Ball{
+float xpos;
+float ypos;
+float size;
+color c1;
+
+Ball(float tempX, float tempY, float tempSize, float tempC1){
+  xpos = tempX;
+  ypos = tempY
+  size = tempSize;
+  c1 = tempC1;
+}
+
+void display(){
+fill(c1);
+ellipse(xpos,ypos,size,size);
+}
+
+}
