@@ -38,6 +38,7 @@ class Ball{
    xpos += directionX;
    ypos += directionY;
    
+   //ball bounce code and color change code
    if(xpos > width){
     directionX = directionX*-1; 
     c1 = color(0,255,0);
